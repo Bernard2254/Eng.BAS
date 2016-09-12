@@ -52,13 +52,13 @@ void mousePress(int button, int state,int x, int y){
       else if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=(((dimensaoy-posySubMenu-(0.05*dimensaoy))*tamy)/dimensaoy) && y<=(((dimensaoy-posySubMenu+(0.05*dimensaoy))*tamy)/dimensaoy)){
         global=6;
         primeiroPersonagem=NULL;
-        QUANTIDADE_PLAYERS=1;
+        DoisJogadores=0;
         criaListaPersonagens();
       }
       else if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=((((dimensaoy-posySubMenu-(0.05*dimensaoy))+(1*diferencay_SubMenu))*tamy)/dimensaoy) && y<=((((dimensaoy-posySubMenu+(0.05*dimensaoy))+(1*diferencay_SubMenu))*tamy)/dimensaoy)){
         global=6;
         primeiroPersonagem=NULL;
-        QUANTIDADE_PLAYERS=2;
+        DoisJogadores=1;
         criaListaPersonagens();
       }
       atualiza();
