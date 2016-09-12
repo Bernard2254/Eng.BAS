@@ -37,16 +37,16 @@ void init(){
   Player1.posx=0.1*dimensaox;
   Player1.posy=0.2*dimensaoy;
   Player1.direcao=0;
-  Player1.bebado=49;
+  Player1.bebado=1;
   Player2.posx=0.9*dimensaox;
   Player2.posy=0.2*dimensaoy;
   Player2.direcao=1;
-  Player2.bebado=49;
+  Player2.bebado=1;
   Player1.vidas=3;
-Player2.vidas=3;
+  Player2.vidas=3;
   TelaSeta=0;
   tempo=1;
-  velocidade=1.5;
+  velocidade=1.57;
   def=-1;
   srand(time(0));
   angle=rand()%90;
@@ -235,7 +235,7 @@ void HUT(GLuint texturaP1, int vidasP1, int bebadoP1,GLuint texturaP2, int vidas
     if(bebadoP2<10){
       colocaTextoBotao(texturaVomito1,Player2.posx,0.10*dimensaoy,6,6);
       glColor4f(0,1,0,1);
-      if(bebadoP1>5){
+      if(bebadoP2>5){
         g=9-bebadoP2;
         g=g/4;
         g=1-g;
@@ -250,9 +250,7 @@ void HUT(GLuint texturaP1, int vidasP1, int bebadoP1,GLuint texturaP2, int vidas
     else if(bebadoP2<20){
       colocaTextoBotao(texturaVomito2,Player2.posx,0.10*dimensaoy,6,6);
       glColor4f(0,0,1,1);
-      colocaTextoBotao(texturaVomito2,Player1.posx,0.10*dimensaoy,6,6);
-      glColor4f(0,0,1,1);
-      if(bebadoP1>15){
+      if(bebadoP2>15){
         g=19-bebadoP2;
         g=g/4;
         g=1-g;
@@ -267,7 +265,7 @@ void HUT(GLuint texturaP1, int vidasP1, int bebadoP1,GLuint texturaP2, int vidas
     else if(bebadoP2<30){
       colocaTextoBotao(texturaVomito3,Player2.posx,0.10*dimensaoy,6,6);
       glColor4f(0.5,0.5,0,1);
-      if(bebadoP1>25){
+      if(bebadoP2>25){
         g=29-bebadoP2;
         g=g/4;
         g=1-g;
@@ -282,7 +280,7 @@ void HUT(GLuint texturaP1, int vidasP1, int bebadoP1,GLuint texturaP2, int vidas
     else if(bebadoP2<40){
       colocaTextoBotao(texturaVomito4,Player2.posx,0.10*dimensaoy,6,6);
       glColor4f(0.7,0.3,0,1);
-      if(bebadoP1>35){
+      if(bebadoP2>35){
         g=39-bebadoP2;
         g=g/4;
         g=1-g;
@@ -297,7 +295,7 @@ void HUT(GLuint texturaP1, int vidasP1, int bebadoP1,GLuint texturaP2, int vidas
     else{
       colocaTextoBotao(texturaVomito5,Player2.posx,0.10*dimensaoy,6,6);
       glColor4f(1,0,0,1);
-      if(bebadoP1>45){
+      if(bebadoP2>45){
         g=49-bebadoP2;
         g=g/4;
         g=1-g;
@@ -437,11 +435,102 @@ int y;
           PlayerJogando=Player1;
         else
           PlayerJogando=Player2;
+
+        if(PlayerJogando.posx==Player2.posx && DoisJogadores==0){
+          numero=rand()%20;
+          //printf("numero = %d\n", numero);
+          if(rand()%2==0){
+            do{
+            if(contador>=numero){
+              TelaSeta=1;
+              TelaAndando=0;
+            }
+              condicao1=0.98*dimensaox;
+              condicao2=1;
+            if(PlayerJogando.posx<condicao1 || PlayerJogando.direcao==condicao2){
+            if(PlayerJogando.direcao==1){
+              PlayerJogando.direcao=0;
+            }
+            else{
+            if(variavel==1){
+                PlayerJogando.textura=PlayerJogando.vetor[0];
+                variavel=0;
+            }
+            else{
+                PlayerJogando.textura=PlayerJogando.vetor[1];
+                variavel=1;
+            }
+                PlayerJogando.posx=PlayerJogando.posx+0.005*dimensaox;
+                contador++;
+            }
+          }
+          else{
+            contador=numero;
+          }
+          Player2=PlayerJogando;
+          colocaTextoBotao(texturaFundoJogo,0.5*dimensaox,0.5*dimensaoy,dimensaox/2,dimensaoy/2);
+          colocaPlayer(Player1.textura, Player1.posx, Player1.direcao);
+          colocaPlayer(Player2.textura, Player2.posx, Player2.direcao);
+          glutSwapBuffers();
+          //printf("Contador = %d\n", contador);
+          }while(contador!=numero);
+          contador=0;
+          TelaAndando=0;
+          TelaSeta=1;
+          Player2.direcao=PlayerJogando.direcao=1;
+          }
+          else{
+            do{
+            if(contador>=numero){
+              TelaSeta=1;
+              TelaAndando=0;
+            }
+            condicao1=(dimensaox/2)+0.15*dimensaox;
+            condicao2=0;
+            if(PlayerJogando.posx>condicao1 || PlayerJogando.direcao==condicao2){
+            if(PlayerJogando.direcao==0){
+              PlayerJogando.direcao=1;
+            }
+            else{
+            if(variavel==1){
+                PlayerJogando.textura=PlayerJogando.vetor[0];
+                variavel=0;
+            }
+            else{
+                PlayerJogando.textura=PlayerJogando.vetor[1];
+                variavel=1;
+            }
+                PlayerJogando.posx=PlayerJogando.posx-0.005*dimensaox;
+                contador++;
+            }
+          }
+          else{
+            contador=numero;
+          }
+          Player2=PlayerJogando;
+          colocaTextoBotao(texturaFundoJogo,0.5*dimensaox,0.5*dimensaoy,dimensaox/2,dimensaoy/2);
+          colocaPlayer(Player1.textura, Player1.posx, Player1.direcao);
+          colocaPlayer(Player2.textura, Player2.posx, Player2.direcao);
+          glutSwapBuffers();
+          //printf("Contador = %d\n", contador);
+          }while(contador!=numero);
+          contador=0;
+          TelaAndando=0;
+          TelaSeta=1;
+          Player2.direcao=PlayerJogando.direcao=1;
+          }
+          if(rand()%2==0)
+            Projetil.textura=texturaCerveja;
+          else
+            Projetil.textura=texturaCachaca;
+          }
           colocaTextoBotao(texturaFundoJogo,0.5*dimensaox,0.5*dimensaoy,dimensaox/2,dimensaoy/2);
           colocaPlayer(Player1.textura, Player1.posx, Player1.direcao);
           colocaPlayer(Player2.textura, Player2.posx, Player2.direcao);
         }
+
     else if(TelaSeta==1 && TelaPause==0 && TelaSair==0 && TelaReiniciar==0 || TelaForca==1){
+      float soma=0, soma2=0;
       if(PlayerJogando.posx==Player1.posx)
         define=1;
       else
@@ -465,8 +554,6 @@ int y;
         velocidadey=sin((angle*pi)/180)*velocidade;
         velocidadex=cos((angle*pi)/180)*velocidade;
       }
-      float soma, soma2;
-      soma=soma2=0;
       glColor4f(0,0,0,1);
       glLineWidth(1.5);
       glBegin(GL_LINE_STRIP);
@@ -485,7 +572,43 @@ int y;
         }
       glEnd();
     }
+
+    if(define==-1 && DoisJogadores==0){
+      velocidadey=-sin((angle*pi)/180)*velocidade;
+      velocidadex=-cos((angle*pi)/180)*velocidade;
+      Projetil.posx=PlayerJogando.posx;
+      Projetil.posy=PlayerJogando.posy+0.13*dimensaoy;
+          for(teste1=1,soma=Projetil.posx, soma2=Projetil.posy; teste1<100 ;teste1=teste1+0.05){
+            if(teste1<=velocidadey/10){
+              def=1;
+            }
+            else{
+              def=-1;
+            }
+            soma=soma+(velocidadex*teste1);
+            soma2=soma2+((velocidadey*teste1)+(0.4*def*pow(teste1,2)));
+            if(soma<=Player1.posx+3 && soma>=Player1.posx-3 && soma2<=Player1.posy+6 && soma2>=Player1.posy-6){
+              TelaSeta=0;
+              TelaForca=1;
+              var=0;
+            }
+          }
+          if(TelaSeta==1){
+            if(angle>-90){
+              angle--;
+          }
+          else{
+            var=3;
+          }
+          if(var==3){
+            angle=angle+2;
+          }
+          glutTimerFunc(50, atualiza, 0);
+
     }
+
+    }
+  }
     else if(TelaProjetil==1 && TelaPause==0 && TelaSair==0 && TelaReiniciar==0){
       colocaTextoBotao(texturaFundoJogo,0.5*dimensaox,0.5*dimensaoy,dimensaox/2,dimensaoy/2);
       colocaPlayer(Player1.textura, Player1.posx, Player1.direcao);
@@ -498,29 +621,32 @@ int y;
       glPopMatrix();
 
       if(PlayerJogando.bebado<20)
-        loucura=1;
-      if(PlayerJogando.bebado<30)
-        loucura=3;
-      if(PlayerJogando.bebado<40)
-        loucura=5;
-      else loucura=7;
+        loucura=4;
+      else if(PlayerJogando.bebado<30)
+        loucura=7;
+      else if(PlayerJogando.bebado<40)
+        loucura=13;
+      else loucura=20;
       if(PlayerJogando.bebado<10)
         erro=0;
-      else
+      else{
         erro=PlayerJogando.bebado%loucura;
+      }
         if(PlayerJogando.bebado%2==0){
           t=1;
         }
         else{
           t=-1;
         }
+        /*printf("Player.bebado = %d\n", PlayerJogando.bebado);
+        printf("erro = %d\n",PlayerJogando.bebado%loucura*t);*/
       if(PlayerJogando.posx==Player2.posx){
-      velocidadey=-sin(((angle+(erro*t))*pi)/180)*velocidade;
-      velocidadex=-cos(((angle+(erro*t))*pi)/180)*velocidade;
+      velocidadey=-sin(((angle+(PlayerJogando.bebado%loucura*t))*pi)/180)*velocidade;
+      velocidadex=-cos(((angle+(PlayerJogando.bebado%loucura*t))*pi)/180)*velocidade;
       }
       else{
-        velocidadey=sin(((angle+(erro*t))*pi)/180)*velocidade;
-        velocidadex=cos(((angle+(erro*t))*pi)/180)*velocidade;
+        velocidadey=sin(((angle+(PlayerJogando.bebado%loucura*t))*pi)/180)*velocidade;
+        velocidadex=cos(((angle+(PlayerJogando.bebado%loucura*t))*pi)/180)*velocidade;
       }
       //printf("velocidadex = %f\nvelocidadey = %f\n", velocidadex, velocidadey);
       if(tempo<=velocidadey/10){
@@ -537,7 +663,7 @@ int y;
         tempo=1;
         TelaProjetil=0;
         global=9;
-        velocidade=1.5;
+        velocidade=1.57;
         srand(time(0));
         angle=(-define)*rand()%90;
       }
@@ -546,7 +672,7 @@ int y;
         if(Projetil.posy>=Player2.posy-0.09*dimensaoy && Projetil.posy<=Player2.posy+0.12*dimensaoy){
           tempo=1;
           global=9;
-          velocidade=1.5;
+          velocidade=1.57;
           glutTimerFunc(0,animacaoTaca,2);
           colocaTextoBotao(texturaFundoJogo,0.5*dimensaox,0.5*dimensaoy,dimensaox/2,dimensaoy/2);
           colocaPlayer(Player1.textura, Player1.posx, Player1.direcao);
@@ -570,8 +696,8 @@ int y;
         if(Projetil.posy>=Player1.posy-0.09*dimensaoy && Projetil.posy<=Player1.posy+0.12*dimensaoy){
           tempo=1;
           global=9;
-          velocidade=1.5;
-          glutTimerFunc(30,animacaoTaca,2);
+          velocidade=1.57;
+          glutTimerFunc(0,animacaoTaca,2);
           glutSwapBuffers();
           glutTimerFunc(200,animacaoTaca,3);
           //printf("Minimo em x: %f\nMaximo em x: %f\nMinimo em y: %f\nMaximo em y: %f\n",Player2.posx-0.015*dimensaox,Player2.posx+0.015*dimensaox,Player2.posy-0.06*dimensaoy,Player2.posy+0.06*dimensaoy);
@@ -588,7 +714,7 @@ int y;
       }
         glutTimerFunc(100,atualiza,0);
     }
-     if(TelaForca==1){
+     if(TelaForca==1 && TelaVencedor==0){
       /*colocaTextoBotao(texturaFundoJogo,0.5*dimensaox,0.5*dimensaoy,dimensaox/2,dimensaoy/2);
       colocaPlayer(Player1.textura, Player1.posx, Player1.direcao);
       colocaPlayer(Player2.textura, Player2.posx, Player2.direcao);*/
@@ -610,15 +736,63 @@ int y;
       if(forca>=0.2){
         compensa=1;
       }
-      else if(compensa!=1)
+      if(compensa!=1 && PlayerJogando.bebado<40){
         forca=forca+0.005;
-      if(compensa==1){
+      }
+      else if(compensa!=1 && PlayerJogando.bebado>=40)
+        forca+=0.01;
+      if(compensa==1 && PlayerJogando.bebado<40){
         forca=forca-0.005;
         if(forca<=0.01){
           compensa=0;
         }
       }
-      velocidade=(forca*0.7/0.2)+1;
+      else if(compensa==1 && PlayerJogando.bebado>=40){
+        forca=forca-0.01;
+        if(forca<=0.01){
+          compensa=0;
+        }
+  }
+  velocidade=(forca*0.7/0.2)+1;
+  if(PlayerMomento%2==1 && DoisJogadores==0){
+    if(PlayerJogando.bebado<20)
+      loucura=4;
+    else if(PlayerJogando.bebado<30)
+      loucura=7;
+    else if(PlayerJogando.bebado<40)
+      loucura=13;
+    else loucura=20;
+    if(PlayerJogando.bebado<10)
+      erro=0;
+    else{
+      erro=PlayerJogando.bebado%loucura;
+    }
+      if(PlayerJogando.bebado%2==0){
+        t=1;
+      }
+      else{
+        t=-1;
+      }
+      velocidadey=-sin(((angle*pi)/180))*velocidade;
+      velocidadex=-cos(((angle*pi)/180))*velocidade;
+      for(teste1=1,s1=Projetil.posx, s2=Projetil.posy; teste1<200 ;teste1=teste1+0.05){
+        if(teste1<=velocidadey/10){
+          def=1;
+        }
+        else{
+          def=-1;
+        }
+        s1=s1+(velocidadex*teste1);
+        s2=s2+((velocidadey*teste1)+(0.4*def*pow(teste1,2)));
+        if(s1<=Player1.posx+1.5 && s1>=Player1.posx-1.5 && s2<=Player1.posy+6 && s2>=Player1.posy-6){
+          printf("oi\n");
+          TelaProjetil=1;
+          TelaForca=0;
+          PlayerMomento++;
+          break;
+        }
+      }
+  }
     }
 
       glutTimerFunc(30, atualiza, 0);
@@ -705,13 +879,14 @@ void teclado(unsigned char key, int x, int y)
           case 'c':
           case 'C':
               if(TelaSeta==1 && TelaSair==0 && TelaReiniciar==0 && TelaPause==0 || TelaForca==1){
-                if(TelaCheat==0)
-                TelaCheat=1;
+                if(TelaCheat==0){
+                  TelaCheat=1;
+                }
                 else
-                TelaCheat=0;
-                glutPostRedisplay();
-              }
+                  TelaCheat=0;
+                  glutTimerFunc(30, atualiza, 0);
 
+              }
           break;
           case 'r':
           case 'R':
@@ -741,8 +916,8 @@ void teclado(unsigned char key, int x, int y)
           break;
           case 'k':
           case 'K':
-              if(TelaPause==0 && TelaSair==0 && TelaReiniciar==0 && TelaProjetil==0 && TelaVencedor==0){
-                if(TelaSeta==1){
+              if(TelaPause==0 && TelaSair==0 && TelaReiniciar==0 && TelaProjetil==0 && TelaVencedor==0 && DoisJogadores==1 || DoisJogadores==0 && PlayerMomento%2==0 && TelaPause==0 && TelaSair==0 && TelaReiniciar==0 && TelaProjetil==0 && TelaVencedor==0){
+                if(TelaSeta==1 ){
                   TelaSeta=0;
                   Projetil.posx=PlayerJogando.posx;
                   Projetil.posy=PlayerJogando.posy+0.13*dimensaoy;
@@ -778,7 +953,7 @@ void teclado(unsigned char key, int x, int y)
           break;
           case 'd':
           case 'D':
-          if(TelaPause==0 && TelaSair==0 && TelaReiniciar==0 && TelaSeta==0 && TelaProjetil==0 && TelaForca==0 && TelaAndando==1 && TelaVencedor==0){
+          if(TelaPause==0 && TelaSair==0 && TelaReiniciar==0 && DoisJogadores==1 && TelaSeta==0 && TelaProjetil==0 && TelaForca==0 && TelaAndando==1 && TelaVencedor==0 || DoisJogadores==0 && PlayerMomento%2==0 && TelaPause==0 && TelaSair==0 && TelaReiniciar==0 && TelaSeta==0 && TelaProjetil==0 && TelaForca==0 && TelaAndando==1 && TelaVencedor==0){
             if(contador>=20){
               if(PlayerJogando.posx==Player2.posx){
                 Player2.direcao=PlayerJogando.direcao=-1;
@@ -833,7 +1008,7 @@ void teclado(unsigned char key, int x, int y)
           }
                 glutPostRedisplay();
           }
-          else if(TelaSeta==1 && TelaSair==0 && TelaPause==0 && TelaReiniciar==0 && TelaForca==0 && TelaVencedor==0){
+          else if(TelaSeta==1 && TelaSair==0 &&  DoisJogadores==1 && TelaPause==0 && TelaReiniciar==0 && TelaForca==0 && TelaVencedor==0 || DoisJogadores==0 && PlayerMomento%2==0 && TelaSeta==1 && TelaSair==0 && TelaPause==0 && TelaReiniciar==0 && TelaForca==0 && TelaVencedor==0){
             if(PlayerJogando.posx==Player1.posx){
               if(angle>0)
                 angle=angle-1;
@@ -848,7 +1023,7 @@ void teclado(unsigned char key, int x, int y)
           break;
           case 'a':
           case 'A':
-          if(TelaPause==0 && TelaSair==0 && TelaReiniciar==0 && TelaSeta==0 && TelaProjetil==0 && TelaForca==0 && TelaAndando==1 && TelaVencedor==0){
+          if(TelaPause==0 && TelaSair==0 &&  DoisJogadores==1 && TelaReiniciar==0 && TelaSeta==0 && TelaProjetil==0 && TelaForca==0 && TelaAndando==1 && TelaVencedor==0 || DoisJogadores==0 && PlayerMomento%2==0 && TelaPause==0 && TelaSair==0 && TelaReiniciar==0 && TelaSeta==0 && TelaProjetil==0 && TelaForca==0 && TelaAndando==1 && TelaVencedor==0){
             if(contador>=20){
               if(PlayerJogando.posx==Player1.posx){
                   Player1.direcao=PlayerJogando.direcao=-1;
@@ -904,7 +1079,7 @@ void teclado(unsigned char key, int x, int y)
 
                 glutPostRedisplay();
               }
-            else if (TelaSeta==1 && TelaSair==0 && TelaPause==0 && TelaReiniciar==0 && TelaForca==0 && TelaVencedor==0){
+            else if (TelaSeta==1 && TelaSair==0 && DoisJogadores==1 && TelaPause==0 && TelaReiniciar==0 && TelaForca==0 && TelaVencedor==0 || DoisJogadores==0 && PlayerMomento%2==0 && TelaSeta==1 && TelaSair==0 && TelaPause==0 && TelaReiniciar==0 && TelaForca==0 && TelaVencedor==0){
               if(PlayerJogando.posx==Player1.posx){
                 if(angle<90)
                   angle=angle+1;

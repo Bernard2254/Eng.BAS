@@ -17,13 +17,13 @@ typedef struct Jogadores{
 char string[50]="Mascotinho e Cica games, apresentam...";
 char v[50];
 GLuint cefetAndando[10];
-int tamx=800, tamy=500, dimensaox=200, dimensaoy=100, teste2, variavel, contador=2, PlayerMomento=2, condicao1, condicao2, TelaCheat, TelaAndando=1,
-TelaSeta, angle=0, define, TelaProjetil=0, TelaVencedor=0;
+int tamx=800, tamy=500, dimensaox=200, dimensaoy=100, teste2, variavel, contador=2, PlayerMomento=2, condicao1, condicao2, TelaCheat,
+TelaAndando=1, DoisJogadores,TelaSeta, angle=0, define, TelaProjetil=0, TelaVencedor=0, var=0, numero;
 personagens *primeiroPersonagem=NULL, *personagemMomento;
 player Player1, Player2, PlayerJogando, Projetil;
 int global,b, c, QUANTIDADE_PLAYERS, TelaSair=0, TelaReiniciar=0, TelaPause=0, inicio=0, soma=0, TelaForca=0, compensa, loucura, t;
 float posy, posx, diferencax_menu,diferencay_menu, posxSubMenu, posySubMenu, diferencay_SubMenu, pi=3.14, teste1, forca, erro;
-double cor, cor2, cor3, alfa, cor4, cor5, cor6, velocidadex, velocidadey, def, velocidade, tempo,g;
+double cor, cor2, cor3, alfa, cor4, cor5, cor6, velocidadex, velocidadey, def, velocidade, tempo,g, s1, s2;
 GLuint texturaFundoMenu, texturaBotao, texturaBotaoPressionado, texturaJogar,
 texturaInstrucoes, texturaOpcoes, texturaSair, texturaVoltar, textura1Jogador, textura2Jogadores,
 texturaJogador1, texturaJogador2, texturaCefet1, texturaCefet2, texturaContinuar, texturaSeta, TEXTURA_PLAYER_1,
