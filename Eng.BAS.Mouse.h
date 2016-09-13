@@ -2,6 +2,59 @@
 void sai(){
   exit(0);
 }
+void sub_Menu(int x, int y){
+  if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=(((dimensaoy-posySubMenu-(0.05*dimensaoy))*tamy)/dimensaoy) && y<=(((dimensaoy-posySubMenu+(0.05*dimensaoy))*tamy)/dimensaoy)){
+    desenhaTextura(0,0);
+    y=posySubMenu;
+    for(b=0; b<4; b++){
+      posicionaBotao(texturaBotao,posxSubMenu, y);
+      y=y-diferencay_SubMenu;
+    }
+
+      colocaTextoBotao(texturaJogar,posxSubMenu,0.8*dimensaoy,0.2*dimensaox,0.15*dimensaoy);
+      colocaTextoBotao(textura1Jogador,posxSubMenu-(0.02*dimensaox),posySubMenu+(0.01*dimensaoy),0,0);
+      colocaTextoBotao(textura2Jogadores,posxSubMenu-(0.02*dimensaox),(posySubMenu-diferencay_SubMenu)+(0.01*dimensaoy),0,0);
+      colocaTextoBotao(texturaVoltar,posxSubMenu-(0.01*dimensaox),(posySubMenu-(2*diferencay_SubMenu))+(0.01*dimensaoy),0.07*dimensaox,0.03*dimensaoy);
+    posicionaBotao(texturaBotaoPressionado,posxSubMenu,posySubMenu);
+    colocaTextoBotao(textura1Jogador,posxSubMenu-(0.02*dimensaox),posySubMenu+(0.01*dimensaoy),0,0);
+    glutSwapBuffers();
+  }
+  else if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=((((dimensaoy-posySubMenu-(0.05*dimensaoy))+diferencay_SubMenu)*tamy)/dimensaoy) && y<=((((dimensaoy-posySubMenu+(0.05*dimensaoy))+diferencay_SubMenu)*tamy)/dimensaoy)){
+    desenhaTextura(0,0);
+    y=posySubMenu;
+    for(b=0; b<4; b++){
+      posicionaBotao(texturaBotao,posxSubMenu, y);
+      y=y-diferencay_SubMenu;
+    }
+
+      colocaTextoBotao(texturaJogar,posxSubMenu,0.8*dimensaoy,0.2*dimensaox,0.15*dimensaoy);
+      colocaTextoBotao(textura1Jogador,posxSubMenu-(0.02*dimensaox),posySubMenu+(0.01*dimensaoy),0,0);
+      colocaTextoBotao(textura2Jogadores,posxSubMenu-(0.02*dimensaox),(posySubMenu-diferencay_SubMenu)+(0.01*dimensaoy),0,0);
+      colocaTextoBotao(texturaVoltar,posxSubMenu-(0.01*dimensaox),(posySubMenu-(2*diferencay_SubMenu))+(0.01*dimensaoy),0.07*dimensaox,0.03*dimensaoy);
+    posicionaBotao(texturaBotaoPressionado,posxSubMenu,posySubMenu-diferencay_SubMenu);
+    colocaTextoBotao(textura2Jogadores,posxSubMenu-(0.02*dimensaox),(posySubMenu-diferencay_SubMenu)+(0.01*dimensaoy),0,0);
+    glutSwapBuffers();
+}
+  else if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=((((dimensaoy-posySubMenu-(0.05*dimensaoy))+(2*diferencay_SubMenu))*tamy)/dimensaoy) && y<=((((dimensaoy-posySubMenu+(0.05*dimensaoy))+(2*diferencay_SubMenu))*tamy)/dimensaoy)){
+    desenhaTextura(0,0);
+    y=posySubMenu;
+    for(b=0; b<4; b++){
+      posicionaBotao(texturaBotao,posxSubMenu, y);
+      y=y-diferencay_SubMenu;
+    }
+
+      colocaTextoBotao(texturaJogar,posxSubMenu,0.8*dimensaoy,0.2*dimensaox,0.15*dimensaoy);
+      colocaTextoBotao(textura1Jogador,posxSubMenu-(0.02*dimensaox),posySubMenu+(0.01*dimensaoy),0,0);
+      colocaTextoBotao(textura2Jogadores,posxSubMenu-(0.02*dimensaox),(posySubMenu-diferencay_SubMenu)+(0.01*dimensaoy),0,0);
+      colocaTextoBotao(texturaVoltar,posxSubMenu-(0.01*dimensaox),(posySubMenu-(2*diferencay_SubMenu))+(0.01*dimensaoy),0.07*dimensaox,0.03*dimensaoy);
+    posicionaBotao(texturaBotaoPressionado,posxSubMenu,posySubMenu-(2*diferencay_SubMenu));
+    colocaTextoBotao(texturaVoltar,posxSubMenu-(0.01*dimensaox),(posySubMenu-(2*diferencay_SubMenu))+(0.01*dimensaoy),0.07*dimensaox,0.03*dimensaoy);
+    glutSwapBuffers();
+}
+  else{
+      glutPostRedisplay();
+  }
+}
 
 void carregaVetor(GLuint textura, GLuint *vetor, int i){
   int u=0;
@@ -31,14 +84,9 @@ void mousePress(int button, int state,int x, int y){
       if(button==GLUT_LEFT_BUTTON && state == GLUT_UP){
         if(x>=(((posx-(0.14*dimensaox))*tamx)/dimensaox) && x<=(((posx+(0.1*dimensaox))*tamx)/dimensaox) && y>=(((dimensaoy-posy-(0.07*dimensaoy))*tamy)/dimensaoy) && y<=(((dimensaoy-posy+(0.07*dimensaoy))*tamy)/dimensaoy)){
           global=3;
+          sub_Menu(x,y);
         }
-      else if(x>=(((posx-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posx+(0.1*dimensaox))*tamx/dimensaox) && y>=((((dimensaoy-posy-(0.07*dimensaoy))+diferencay_menu)*tamy)/dimensaoy) && y<=((((dimensaoy-posy+(0.07*dimensaoy))+diferencay_menu)*tamy)/dimensaoy)){
-        global=4;
-      }
       else if(x>=((((posx-(0.14*dimensaox))+diferencax_menu)*tamx)/dimensaox) && x<=((((posx+(0.1*dimensaox))+diferencax_menu)*tamx)/dimensaox) && y>=(((dimensaoy-posy-(0.07*dimensaoy))*tamy)/dimensaoy) && y<=(((dimensaoy-posy+(0.07*dimensaoy))*tamy)/dimensaoy)){
-        global=5;
-      }
-      else if(x>=((((posx-(0.14*dimensaox))+diferencax_menu)*tamx)/dimensaox) && x<=((((posx+(0.1*dimensaox))+diferencax_menu)*tamx)/dimensaox) &&  y>=((((dimensaoy-posy-(0.07*dimensaoy))+diferencay_menu)*tamy)/dimensaoy) && y<=((((dimensaoy-posy+(0.07*dimensaoy))+diferencay_menu)*tamy)/dimensaoy)){
         glutTimerFunc(300, sai, 0);
       }
     }
@@ -52,34 +100,17 @@ void mousePress(int button, int state,int x, int y){
       else if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=(((dimensaoy-posySubMenu-(0.05*dimensaoy))*tamy)/dimensaoy) && y<=(((dimensaoy-posySubMenu+(0.05*dimensaoy))*tamy)/dimensaoy)){
         global=6;
         primeiroPersonagem=NULL;
-        QUANTIDADE_PLAYERS=1;
+        DoisJogadores=0;
         criaListaPersonagens();
       }
       else if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=((((dimensaoy-posySubMenu-(0.05*dimensaoy))+(1*diferencay_SubMenu))*tamy)/dimensaoy) && y<=((((dimensaoy-posySubMenu+(0.05*dimensaoy))+(1*diferencay_SubMenu))*tamy)/dimensaoy)){
         global=6;
         primeiroPersonagem=NULL;
-        QUANTIDADE_PLAYERS=2;
+        DoisJogadores=1;
         criaListaPersonagens();
       }
       atualiza();
     }
-  break;
-  case 4:
-      if(button==GLUT_LEFT_BUTTON && state == GLUT_UP){
-        if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=((((dimensaoy-posySubMenu-(0.05*dimensaoy))+(2*diferencay_SubMenu))*tamy)/dimensaoy) && y<=((((dimensaoy-posySubMenu+(0.05*dimensaoy))+(2*diferencay_SubMenu))*tamy)/dimensaoy)){
-            retornaMenu();
-        }
-      }
-
-
-  break;
-
-  case 5:
-      if(button==GLUT_LEFT_BUTTON && state == GLUT_UP){
-        if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=((((dimensaoy-posySubMenu-(0.05*dimensaoy))+(2*diferencay_SubMenu))*tamy)/dimensaoy) && y<=((((dimensaoy-posySubMenu+(0.05*dimensaoy))+(2*diferencay_SubMenu))*tamy)/dimensaoy)){
-            retornaMenu();
-        }
-      }
   break;
   case 6:
   if(button==GLUT_LEFT_BUTTON && state == GLUT_UP){
@@ -202,31 +233,21 @@ void mousePress(int button, int state,int x, int y){
           TelaReiniciar=0;
           glutTimerFunc(300, atualiza, 0);
         }
+        else if(x>=(0.42*tamx)-(0.07*tamx) && x<=(0.42*tamx)+(0.06*tamx) && y>=(0.62*tamy)-(0.04*tamy) && y<=(0.62*tamy)+(0.03*tamy) && TelaVencedor==1){
+            setup();
+            TelaVencedor=0;
+            glutTimerFunc(300, atualiza, 0);
+          }
+        else if(x>=(0.58*tamx)-(0.07*tamx) && x<=(0.58*tamx)+(0.06*tamx) && y>=(0.62*tamy)-(0.04*tamy) && y<=(0.62*tamy)+(0.03*tamy) && TelaVencedor==1){
+          global=2;
+          setup();
+          TelaVencedor=0;
+          glutTimerFunc(300, atualiza, 0);
+        }
       }
   break;
 
 }
-}
-
-void sub_Menu(int x, int y){
-  if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=(((dimensaoy-posySubMenu-(0.05*dimensaoy))*tamy)/dimensaoy) && y<=(((dimensaoy-posySubMenu+(0.05*dimensaoy))*tamy)/dimensaoy)){
-    posicionaBotao(texturaBotaoPressionado,posxSubMenu,posySubMenu);
-    colocaTextoBotao(textura1Jogador,posxSubMenu-(0.02*dimensaox),posySubMenu+(0.01*dimensaoy),0,0);
-    glutSwapBuffers();
-  }
-  else if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=((((dimensaoy-posySubMenu-(0.05*dimensaoy))+diferencay_SubMenu)*tamy)/dimensaoy) && y<=((((dimensaoy-posySubMenu+(0.05*dimensaoy))+diferencay_SubMenu)*tamy)/dimensaoy)){
-    posicionaBotao(texturaBotaoPressionado,posxSubMenu,posySubMenu-diferencay_SubMenu);
-    colocaTextoBotao(textura2Jogadores,posxSubMenu-(0.02*dimensaox),(posySubMenu-diferencay_SubMenu)+(0.01*dimensaoy),0,0);
-    glutSwapBuffers();
-}
-  else if(x>=(((posxSubMenu-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posxSubMenu+(0.1*dimensaox))*tamx/dimensaox) && y>=((((dimensaoy-posySubMenu-(0.05*dimensaoy))+(2*diferencay_SubMenu))*tamy)/dimensaoy) && y<=((((dimensaoy-posySubMenu+(0.05*dimensaoy))+(2*diferencay_SubMenu))*tamy)/dimensaoy)){
-    posicionaBotao(texturaBotaoPressionado,posxSubMenu,posySubMenu-(2*diferencay_SubMenu));
-    colocaTextoBotao(texturaVoltar,posxSubMenu-(0.01*dimensaox),(posySubMenu-(2*diferencay_SubMenu))+(0.01*dimensaoy),0.07*dimensaox,0.03*dimensaoy);
-    glutSwapBuffers();
-}
-  else{
-      glutPostRedisplay();
-  }
 }
 
 void movimentoMouse(int x, int y){
@@ -240,19 +261,9 @@ printf("y : %d\nx : %d\n", y, x);*/
           colocaTextoBotao(texturaJogar,posx-(0.01*dimensaox), posy+(0.01*dimensaoy),0,0);
           glutSwapBuffers();
         }
-        else if(x>=(((posx-(0.14*dimensaox))*tamx)/dimensaox) && x<=((posx+(0.1*dimensaox))*tamx/dimensaox) && y>=((((dimensaoy-posy-(0.07*dimensaoy))+diferencay_menu)*tamy)/dimensaoy) && y<=((((dimensaoy-posy+(0.07*dimensaoy))+diferencay_menu)*tamy)/dimensaoy)){
-          posicionaBotao(texturaBotaoPressionado,posx,posy-diferencay_menu);
-          colocaTextoBotao(texturaOpcoes, posx-(0.01*dimensaox), (posy-diferencay_menu)+(0.01*dimensaoy),0,0);
-          glutSwapBuffers();
-        }
         else if(x>=((((posx-(0.14*dimensaox))+diferencax_menu)*tamx)/dimensaox) && x<=((((posx+(0.1*dimensaox))+diferencax_menu)*tamx)/dimensaox) && y>=(((dimensaoy-posy-(0.07*dimensaoy))*tamy)/dimensaoy) && y<=(((dimensaoy-posy+(0.07*dimensaoy))*tamy)/dimensaoy)){
           posicionaBotao(texturaBotaoPressionado,posx+diferencax_menu,posy);
-          colocaTextoBotao(texturaInstrucoes, posx+diferencax_menu-(0.01*dimensaox), posy+(0.01*dimensaoy),0,0);
-          glutSwapBuffers();
-        }
-        else if(x>=((((posx-(0.14*dimensaox))+diferencax_menu)*tamx)/dimensaox) && x<=((((posx+(0.1*dimensaox))+diferencax_menu)*tamx)/dimensaox) &&  y>=((((dimensaoy-posy-(0.07*dimensaoy))+diferencay_menu)*tamy)/dimensaoy) && y<=((((dimensaoy-posy+(0.07*dimensaoy))+diferencay_menu)*tamy)/dimensaoy)){
-          posicionaBotao(texturaBotaoPressionado,posx+diferencax_menu,posy-diferencay_menu);
-          colocaTextoBotao(texturaSair, posx+diferencax_menu-(0.01*dimensaox), (posy-diferencay_menu)+(0.01*dimensaoy),0,0);
+          colocaTextoBotao(texturaSair, posx+diferencax_menu-(0.01*dimensaox), posy+(0.01*dimensaoy),0,0);
           glutSwapBuffers();
         }
         else{
@@ -262,8 +273,6 @@ printf("y : %d\nx : %d\n", y, x);*/
         }
     break;
     case 3:
-    case 4:
-    case 5:
         sub_Menu(x,y);
     break;
     case 6:
@@ -293,15 +302,15 @@ printf("y : %d\nx : %d\n", y, x);*/
           atualiza();
     break;
     case 8:
-        if(x>=(0.42*tamx)-(0.07*tamx) && x<=(0.42*tamx)+(0.06*tamx) && y>=(0.62*tamy)-(0.04*tamy) && y<=(0.62*tamy)+(0.03*tamy) && (TelaSair==1 || TelaReiniciar==1)){
-            alfa=0.1;
+        if(x>=(0.42*tamx)-(0.07*tamx) && x<=(0.42*tamx)+(0.06*tamx) && y>=(0.62*tamy)-(0.04*tamy) && y<=(0.62*tamy)+(0.03*tamy) && (TelaSair==1 || TelaReiniciar==1 || TelaVencedor==1)){
+            //alfa=0.1;
             colocaTextoBotao(texturaBotaoPressionado, 0.42*dimensaox, 0.38*dimensaoy, 0.15*dimensaox,0.10*dimensaoy);
             colocaTextoBotao(texturaSim, 0.41*dimensaox, 0.39*dimensaoy,0.04*dimensaox,0.02*dimensaoy);
             glutSwapBuffers();
             alfa=1;
           }
-        else if(x>=(0.58*tamx)-(0.07*tamx) && x<=(0.58*tamx)+(0.06*tamx) && y>=(0.62*tamy)-(0.04*tamy) && y<=(0.62*tamy)+(0.03*tamy) && (TelaSair==1 || TelaReiniciar==1)){
-          alfa=0.1;
+        else if(x>=(0.58*tamx)-(0.07*tamx) && x<=(0.58*tamx)+(0.06*tamx) && y>=(0.62*tamy)-(0.04*tamy) && y<=(0.62*tamy)+(0.03*tamy) && (TelaSair==1 || TelaReiniciar==1 || TelaVencedor==1)){
+          //alfa=0.1;
           colocaTextoBotao(texturaBotaoPressionado, 0.58*dimensaox, 0.38*dimensaoy, 0.15*dimensaox,0.10*dimensaoy);
           colocaTextoBotao(texturaNao, 0.57*dimensaox, 0.39*dimensaoy,0.04*dimensaox,0.02*dimensaoy);
           glutSwapBuffers();
@@ -311,6 +320,15 @@ printf("y : %d\nx : %d\n", y, x);*/
 
         else if(TelaSair==1 || TelaReiniciar==1 || TelaPause==1){
           glutPostRedisplay();
+        }
+        else if(TelaVencedor==1){
+          colocaTextoBotao(texturaFundoJogo,0.5*dimensaox,0.5*dimensaoy,dimensaox/2,dimensaoy/2);
+          colocaTextoBotao(texturaJogarNovamente, 0.5*dimensaox, 0.5*dimensaoy,0.20*dimensaox,0.20*dimensaoy);
+          colocaTextoBotao(texturaBotao, 0.42*dimensaox, 0.38*dimensaoy, 0.15*dimensaox,0.10*dimensaoy);
+          colocaTextoBotao(texturaBotao, 0.58*dimensaox, 0.38*dimensaoy, 0.15*dimensaox,0.10*dimensaoy);
+          colocaTextoBotao(texturaSim, 0.41*dimensaox, 0.39*dimensaoy,0.04*dimensaox,0.02*dimensaoy);
+          colocaTextoBotao(texturaNao, 0.57*dimensaox, 0.39*dimensaoy,0.04*dimensaox,0.02*dimensaoy);
+          glutSwapBuffers();
         }
 
 

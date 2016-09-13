@@ -61,6 +61,8 @@ void setup(){
   TelaCheat=TelaForca=compensa=forca=0;
   TelaAndando=1;
   TelaVencedor=0;
+  velocidade=1.57;
+  k=0;
 }
 
 void criaListaPersonagens(){

@@ -263,6 +263,12 @@ texturaZoaUFOP = SOIL_load_OGL_texture(
   SOIL_CREATE_NEW_ID,
 SOIL_FLAG_INVERT_Y
 );
+texturaJogarNovamente = SOIL_load_OGL_texture(
+  "TelaJogarNovamente.png",
+  SOIL_LOAD_AUTO,
+  SOIL_CREATE_NEW_ID,
+SOIL_FLAG_INVERT_Y
+);
   glEnable( GL_BLEND );
   glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
   glutSwapBuffers();
@@ -331,9 +337,9 @@ void desenhaTextura(float x, float y){
 
 void desenhaBotoes(){
   colocaTextoBotao(texturaJogar,posx-(0.01*dimensaox),posy+(0.01*dimensaoy),0,0);
-  colocaTextoBotao(texturaOpcoes,posx-(0.01*dimensaox),posy-(diferencay_menu-(0.01*dimensaoy)),0,0);
-  colocaTextoBotao(texturaInstrucoes,posx+(-(0.01*dimensaox)+diferencax_menu),posy+(0.01*dimensaoy),0,0);
-  colocaTextoBotao(texturaSair,posx+(-(0.01*dimensaox)+diferencax_menu),posy-(diferencay_menu-(0.01*dimensaoy)),0,0);
+  //colocaTextoBotao(texturaOpcoes,posx-(0.01*dimensaox),posy-(diferencay_menu-(0.01*dimensaoy)),0,0);
+  colocaTextoBotao(texturaSair,posx+(-(0.01*dimensaox)+diferencax_menu),posy+(0.01*dimensaoy),0,0);
+//  colocaTextoBotao(texturaSair,posx+(-(0.01*dimensaox)+diferencax_menu),posy-(diferencay_menu-(0.01*dimensaoy)),0,0);
 }
 
 void menu(){
@@ -343,7 +349,6 @@ void menu(){
   diferencay_menu=0.2*dimensaoy;
   posx=0.35*dimensaox;
   for(b=0; b<2; b++){
-    for(contador=0,posy=0.35*dimensaoy; contador<2; posy=posy-diferencay_menu, contador++)
     posicionaBotao(texturaBotao,posx+(b*diferencax_menu), posy);
   }
   posy=0.35*dimensaoy;
