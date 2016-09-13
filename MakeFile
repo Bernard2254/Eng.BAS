@@ -1,0 +1,16 @@
+CC=gcc
+OPCOES_COMPILADOR=-I. -lglut -lGLU -lGL -lSOIL -lm -lGLEW
+TODOS_ARQUIVOS_PONTOH =
+TODOS_ARQUIVOS_OBJ = Eng.BAS.o
+
+%.o: %.c $(TODOS_ARQUIVOS_PONTOH)
+	$(CC) -o $@ -c $< $(OPCOES_COMPILADOR)
+
+all: $(TODOS_ARQUIVOS_OBJ)
+	gcc -o main $^ $(OPCOES_COMPILADOR)
+
+run: all
+	./main
+
+clean:
+	rm *.o main

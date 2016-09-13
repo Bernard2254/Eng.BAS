@@ -1,0 +1,33 @@
+COMANDOS:
+
+-Compilar -> gcc Eng.BAS.c -lglut -lGLU -lGL -lSOIL -lm -lGLEW
+ATENCAO -> O include SOIL esta adequado ao meu pc:
+#include<SOIL/SOIL.h> existe a possibilidade de não compilar, tentar:
+#include<SOIL.h>
+
+
+INSTRUÇÕES:
+
+-Andar -> "a" e "d";
+-Direcionar Seta -> "a" e "d";
+-Definir ângulo -> "k";
+-Definir força -> "k";
+-Ativar modo cheat -> "c";
+-Pause -> "p"
+-Sair -> "s";
+-Reiniciar -> "r";
+
+Cada jogador tem direito a 20 passos por turno ou apertar "k" e abdicá-los;
+A porcentagem da barra preenchida corresponde a força aplicada;
+Os rostos indicam o estado alcóolico do jogador, quanto mais desesperadora maior
+a probabilidade de errar o alvo;
+
+LISTA DE ITENS ADICIONAIS:
+-> Texturas animadas: Animação quando o personagem anda, manda o projétil, quando acerta o oponente, e projétil voando;
+-> Movimentação antes de atirar, vidas(estado alcóolico), projétil rodando;
+-> Vento(adequação ao jogo, probabilidade de erro aumenta de acordo com o nível alcóolico);
+-> Inteligência Artificial;
+-> Modo Cheat;
+-> Telas Completas (menu, seleciona personagem, tela de pause, sair, reiniciar);
+-> Link -> video:
+
